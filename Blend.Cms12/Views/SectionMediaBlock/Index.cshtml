@@ -1,0 +1,11 @@
+﻿@model SectionMediaBlock
+
+<header>
+    @Html.PropertyFor(x => x.Headline)
+</header>
+<div>@Html.PropertyFor(x => x.Body)</div>
+
+<picture>
+    <source srcset="@Url.ContentUrl(Model.Image)"/>
+    <img srcset="@Url.ContentUrl(Model.Image)" />
+</picture>

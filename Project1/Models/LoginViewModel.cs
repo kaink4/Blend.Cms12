@@ -1,13 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Project1.Models
-{
-    public class LoginViewModel
-    {
-        [Required]
-        public string Username { get; set; }
+namespace Project1.Models;
 
-        [Required]
-        public string Password { get; set; }
-    }
+public class LoginViewModel
+{
+    [Required]
+    public string Username { get; set; }
+
+    [Required]
+    public string Password { get; set; }
 }

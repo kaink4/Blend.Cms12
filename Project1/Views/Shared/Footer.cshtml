@@ -21,15 +21,15 @@
                 <ul>
                     <li>
                         @if (Model.Layout.LoggedIn)
+                    {
+                        @Html.ContentLink(LocalizationService.Current.GetString("/footer/logout"), "Logout") }
+                    else
+                    {
+                        if (!Model.Layout.IsInReadonlyMode)
                         {
-                            @Html.ContentLink(LocalizationService.Current.GetString("/footer/logout"), "Logout") }
-                        else
-                        {
-                            if (!Model.Layout.IsInReadonlyMode)
-                            {
-                                <a href="@Model.Layout.LoginUrl" title="@Html.Translate("/footer/login")">@Html.Translate("/footer/login")</a>
-                            }
+                            <a href="@Model.Layout.LoginUrl" title="@Html.Translate("/footer/login")">@Html.Translate("/footer/login")</a>
                         }
+                    }
                     </li>
                 </ul>
             </div>

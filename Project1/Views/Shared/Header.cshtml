@@ -4,12 +4,12 @@
 
 @{
     HelperResult ItemTemplate(HtmlHelpers.MenuItem item)
-    {
-        <li class="nav-item">
+{
+    <li class="nav-item">
             @Html.PageLink(item.Page, null, new { @class = "nav-link" + (item.Selected ? " active" : null) })
         </li>
-        return new HelperResult(w => Task.CompletedTask);
-    }
+    return new HelperResult(w => Task.CompletedTask);
+}
 }
 
 <header>

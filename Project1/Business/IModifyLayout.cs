@@ -1,13 +1,12 @@
 using Project1.Models.ViewModels;
 
-namespace Project1.Business
+namespace Project1.Business;
+
+/// <summary>
+/// Defines a method which may be invoked by PageContextActionFilter allowing controllers
+/// to modify common layout properties of the view model.
+/// </summary>
+internal interface IModifyLayout
 {
-    /// <summary>
-    /// Defines a method which may be invoked by PageContextActionFilter allowing controllers
-    /// to modify common layout properties of the view model.
-    /// </summary>
-    internal interface IModifyLayout
-    {
-        void ModifyLayout(LayoutModel layoutModel);
-    }
+    void ModifyLayout(LayoutModel layoutModel);
 }

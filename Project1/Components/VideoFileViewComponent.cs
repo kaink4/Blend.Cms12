@@ -4,35 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 using Project1.Models.Media;
 using Project1.Models.ViewModels;
 
-namespace Project1.Components
+namespace Project1.Components;
+
+/// <summary>
+/// Controller for the video file.
+/// </summary>
+public class VideoFileViewComponent : PartialContentComponent<VideoFile>
 {
-    /// <summary>
-    /// Controller for the video file.
-    /// </summary>
-    public class VideoFileViewComponent : PartialContentComponent<VideoFile>
+    private readonly UrlResolver _urlResolver;
+
+    public VideoFileViewComponent(UrlResolver urlResolver)
     {
-        private readonly UrlResolver _urlResolver;
+        _urlResolver = urlResolver;
+    }
 
-        public VideoFileViewComponent(UrlResolver urlResolver)
+    /// <summary>
+    /// The index action for the video file. Creates the view model and renders the view.
+    /// </summary>
+    /// <param name="currentContent">The current video file.</param>
+    protected override IViewComponentResult InvokeComponent(VideoFile currentContent)
+    {
+        var model = new VideoViewModel
         {
-            _urlResolver = urlResolver;
-        }
+            Url = _urlResolver.GetUrl(currentContent.ContentLink),
+            PreviewImageUrl = ContentReference.IsNullOrEmpty(currentContent.PreviewImage)
+                ? null
+                : _urlResolver.GetUrl(currentContent.PreviewImage),
+        };
 
-        /// <summary>
-        /// The index action for the video file. Creates the view model and renders the view.
-        /// </summary>
-        /// <param name="currentContent">The current video file.</param>
-        protected override IViewComponentResult InvokeComponent(VideoFile currentContent)
-        {
-            var model = new VideoViewModel
-            {
-                Url = _urlResolver.GetUrl(currentContent.ContentLink),
-                PreviewImageUrl = ContentReference.IsNullOrEmpty(currentContent.PreviewImage)
-                    ? null
-                    : _urlResolver.GetUrl(currentContent.PreviewImage),
-            };
-
-            return View(model);
-        }
+        return View(model);
     }
 }

@@ -1,9 +1,8 @@
-namespace Project1.Models.Blocks
+namespace Project1.Models.Blocks;
+
+/// <summary>
+/// Base class for all block types on the site
+/// </summary>
+public abstract class SiteBlockData : BlockData
 {
-    /// <summary>
-    /// Base class for all block types on the site
-    /// </summary>
-    public abstract class SiteBlockData : BlockData
-    {
-    }
 }

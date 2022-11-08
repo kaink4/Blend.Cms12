@@ -1,29 +1,28 @@
 using Project1.Models.Pages;
 
-namespace Project1.Models.ViewModels
+namespace Project1.Models.ViewModels;
+
+public class SearchContentModel : PageViewModel<SearchPage>
 {
-    public class SearchContentModel : PageViewModel<SearchPage>
+    public SearchContentModel(SearchPage currentPage)
+        : base(currentPage)
     {
-        public SearchContentModel(SearchPage currentPage)
-            : base(currentPage)
-        {
-        }
+    }
 
-        public bool SearchServiceDisabled { get; set; }
+    public bool SearchServiceDisabled { get; set; }
 
-        public string SearchedQuery { get; set; }
+    public string SearchedQuery { get; set; }
 
-        public int NumberOfHits { get; set; }
+    public int NumberOfHits { get; set; }
 
-        public IEnumerable<SearchHit> Hits { get; set; }
+    public IEnumerable<SearchHit> Hits { get; set; }
 
-        public class SearchHit
-        {
-            public string Title { get; set; }
+    public class SearchHit
+    {
+        public string Title { get; set; }
 
-            public string Url { get; set; }
+        public string Url { get; set; }
 
-            public string Excerpt { get; set; }
-        }
+        public string Excerpt { get; set; }
     }
 }

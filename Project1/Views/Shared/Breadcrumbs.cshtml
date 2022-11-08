@@ -5,30 +5,30 @@
 
 @{
     HelperResult ItemTemplate(HtmlHelpers.MenuItem breadCrumbItem)
+{
+    if (breadCrumbItem.Selected)
     {
-        if (breadCrumbItem.Selected)
+        if (breadCrumbItem.Page.HasTemplate() && !breadCrumbItem.Page.ContentLink.CompareToIgnoreWorkID(Model.CurrentPage.ContentLink))
         {
-            if (breadCrumbItem.Page.HasTemplate() && !breadCrumbItem.Page.ContentLink.CompareToIgnoreWorkID(Model.CurrentPage.ContentLink))
-            {
-                <li class="breadcrumb-item">
+            <li class="breadcrumb-item">
                     @Html.PageLink(breadCrumbItem.Page)
                 </li>
-            }
-            else
-            {
-                <li class="breadcrumb-item active" aria-current="page">
+        }
+        else
+        {
+            <li class="breadcrumb-item active" aria-current="page">
                     @breadCrumbItem.Page.PageName
                 </li>
-            }
-
-            if (!breadCrumbItem.Page.ContentLink.CompareToIgnoreWorkID(Model.CurrentPage.ContentLink))
-            {
-                @Html.MenuList(breadCrumbItem.Page.ContentLink, ItemTemplate)
-            }
         }
 
-        return new HelperResult(w => Task.CompletedTask);
+        if (!breadCrumbItem.Page.ContentLink.CompareToIgnoreWorkID(Model.CurrentPage.ContentLink))
+        {
+            @Html.MenuList(breadCrumbItem.Page.ContentLink, ItemTemplate)
+        }
     }
+
+    return new HelperResult(w => Task.CompletedTask);
+}
 }
 
 <nav aria-label="breadcrumb">

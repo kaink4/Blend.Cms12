@@ -1,3 +1,13 @@
 ﻿@model GeneralPage
 
-@Model.Name
+<main>
+    some example content for @Model.Name
+
+    <div>
+        @Html.PropertyFor(x => Model.Body)
+    </div>
+
+    <div >
+        @Html.PropertyFor(x => x.BottomContentArea);
+    </div>
+</main>

@@ -1,7 +1,6 @@
-namespace Project1.Models.Pages
+namespace Project1.Models.Pages;
+
+public interface IHasRelatedContent
 {
-    public interface IHasRelatedContent
-    {
-        ContentArea RelatedContentArea { get; }
-    }
+    ContentArea RelatedContentArea { get; }
 }
