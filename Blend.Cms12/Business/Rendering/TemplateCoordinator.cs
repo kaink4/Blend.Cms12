@@ -10,31 +10,30 @@ namespace Blend.Cms12.Business.Rendering
     {
         public void Register(TemplateModelCollection viewTemplateModelRegistrator)
         {
-            viewTemplateModelRegistrator.Add(typeof(SectionMediaBlock), new TemplateModel
-            {
-                Name = "SectionMediaBlock-Default",
-                AvailableWithoutTag = true,
-                TemplateTypeCategory = EPiServer.Framework.Web.TemplateTypeCategories.MvcPartialView,
-                Path = "~/Views/SectionMediaBlock/Index.cshtml"
-            });
-
-            viewTemplateModelRegistrator.Add(typeof(LinkGridBlock), new TemplateModel
-            {
-                Name = "LinkGridBlock-Default",
-                AvailableWithoutTag = true,
-                TemplateTypeCategory = EPiServer.Framework.Web.TemplateTypeCategories.MvcPartialView,
-                Path = "~/Views/LinkGridBlock/Index.cshtml"
-            });
+            RegisterBlock<SectionMediaBlock>(viewTemplateModelRegistrator);
+            RegisterBlock<LinkGridBlock>(viewTemplateModelRegistrator);
 
             viewTemplateModelRegistrator.Add(typeof(AbstractContentPage), new TemplateModel
             {
                 Name = "AbstractContentPage-LinkGrid",
                 AvailableWithoutTag = false,
-                Tags = new[] {"LinkGrid"},
+                Tags = new[] { "LinkGrid" },
                 Inherit = true,
                 TemplateTypeCategory = EPiServer.Framework.Web.TemplateTypeCategories.MvcPartialView,
                 Path = "~/Views/AbstractContentPage/LinkGrid.cshtml"
             });
         }
+
+        private void RegisterBlock<T>(TemplateModelCollection viewTemplateModelRegistrator) where T : BlockData
+        {
+            viewTemplateModelRegistrator.Add(typeof(T), new TemplateModel
+            {
+                Name = $"{typeof(T).Name}-Default",
+                AvailableWithoutTag = true,
+                TemplateTypeCategory = EPiServer.Framework.Web.TemplateTypeCategories.MvcPartialView,
+                Path = $"~/Views/Blocks/{typeof(T).Name}.cshtml"
+            });
+        }
+
     }
 }

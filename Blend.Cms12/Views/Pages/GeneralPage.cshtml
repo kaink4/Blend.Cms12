@@ -1,0 +1,13 @@
+﻿@model PageViewModel<GeneralPage>
+
+<main>
+    some example content for @Model.Page.Name
+
+    <div>
+        @Html.PropertyFor(x => Model.Page.Body)
+    </div>
+
+    <div >
+        @Html.PropertyFor(x => x.Page.BottomContentArea);
+    </div>
+</main>

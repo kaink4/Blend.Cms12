@@ -8,7 +8,7 @@ public abstract class AbstractContentPage : PageData
         Name = "Page Title",
         GroupName = "SEO",
         Order = 10)]
-    public virtual string? PageTitle { get; set; }
+    public virtual string? PageTitle { get; set; } 
 
     [Display(
         Name = "MetaDescription",
