@@ -1,8 +1,13 @@
-﻿@model PageViewModel<Homepage>
+﻿@model HomepageViewModel
 
 <main>
     some example content for @Model.Page.Name
 
-  
+    @foreach (var page in Model.RelatedContent)
+    {
+        <div>
+            @{Html.RenderContentData(page, false, "ArticlePartial");}
+        </div>
+    }
 
 </main>
